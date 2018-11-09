@@ -30,7 +30,7 @@ func (esq *SimpleEventStoreStorage) FindAll(model []*interface{}, collectionName
 }
 
 // FindOne ...
-func (esq *SimpleEventStoreStorage) FindOne(model *interface{}, collectionName string, filter bson.M, sorts ...string) error {
+func (esq *SimpleEventStoreStorage) FindOne(model *struct{}, collectionName string, filter bson.M, sorts ...string) error {
 	collSelected := esq.mongoDB.C(collectionName)
 	err := collSelected.Find(filter).Sort(sorts...).One(&model)
 	// check if there a query error, this function should be return error
